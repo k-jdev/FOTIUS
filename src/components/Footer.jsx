@@ -169,11 +169,13 @@ function Footer() {
             }
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <img
-              src={chnu_logo}
-              alt="Герб Черкаського національного університету"
-              className="h-24 md:h-32"
-            />
+            <a href="https://cdu.edu.ua/">
+              <img
+                src={chnu_logo}
+                alt="Герб Черкаського національного університету"
+                className="h-24 md:h-32"
+              />
+            </a>
           </motion.div>
           <p className="text-gray-300 mb-2">
             Черкаський національний університет імені Богдана Хмельницького
@@ -184,8 +186,6 @@ function Footer() {
           </p>
         </motion.div>
       </motion.div>
-
-      {/* Інформація про адресу з картою */}
     </footer>
   );
 }
