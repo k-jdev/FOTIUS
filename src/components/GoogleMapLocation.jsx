@@ -27,13 +27,6 @@ function GoogleMapLocation() {
     zoomControl: true,
     mapTypeControl: true,
     streetViewControl: true,
-    styles: [
-      {
-        featureType: "all",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#003D74" }],
-      },
-    ],
   };
 
   return (

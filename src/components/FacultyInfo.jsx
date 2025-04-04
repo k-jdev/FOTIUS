@@ -88,7 +88,7 @@ function FacultyInfo() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Дізнатися більше
+                  <a href="https://fotius.cdu.edu.ua/">Дізнатися більше</a>
                 </motion.button>
               </div>
             </motion.div>
