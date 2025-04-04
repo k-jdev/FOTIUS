@@ -11,6 +11,7 @@ import {
   textBlockVariants,
   imageBlockVariants,
 } from "../utils/animationVariants";
+import TiltCard from "./TiltCard";
 
 function FacultyInfo() {
   const [isVisible, setIsVisible] = useState(false);
@@ -154,24 +155,25 @@ function FacultyInfo() {
                 initial="hidden"
                 animate={isInView2 ? "visible" : "hidden"}
                 variants={cardVariants}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden"
+                className="h-full"
               >
-                <div className="h-64 overflow-hidden">
-                  <motion.img
-                    src={card.img}
-                    alt={card.alt}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-[#003D74] mb-3">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-700">{card.text}</p>
-                </div>
+                <TiltCard className="bg-white rounded-xl shadow-lg overflow-hidden h-full">
+                  <div className="h-64 overflow-hidden">
+                    <motion.img
+                      src={card.img}
+                      alt={card.alt}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-[#003D74] mb-3">
+                      {card.title}
+                    </h3>
+                    <p className="text-gray-700">{card.text}</p>
+                  </div>
+                </TiltCard>
               </motion.div>
             ))}
           </div>

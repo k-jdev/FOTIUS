@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   Facebook,
   Instagram,
@@ -16,6 +15,7 @@ import {
   itemVariants,
   scrollToSection,
 } from "../utils/animationVariants";
+import GoogleMapLocation from "./GoogleMapLocation";
 
 function Footer() {
   const footerRef = useRef(null);
@@ -29,6 +29,18 @@ function Footer() {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
+        <div className="w-full  py-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="text-center mb-8"
+            ></motion.div>
+
+            <GoogleMapLocation />
+          </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <motion.div variants={itemVariants} className="md:col-span-1">
             <div className="flex items-center mb-4">
@@ -172,6 +184,8 @@ function Footer() {
           </p>
         </motion.div>
       </motion.div>
+
+      {/* Інформація про адресу з картою */}
     </footer>
   );
 }
