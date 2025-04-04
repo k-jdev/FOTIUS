@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import url("family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+html {
+  font-family: "Montserrat";
+  font-weight: 500;
+}
