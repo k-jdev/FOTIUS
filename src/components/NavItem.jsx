@@ -5,7 +5,7 @@ function NavItem({ onClick, label, isMobile, setIsOpen }) {
   return (
     <button
       onClick={() => {
-        onClick();
+        onClick && onClick();
         isMobile && setIsOpen && setIsOpen(false);
       }}
       className="block cursor-pointer px-3 py-2 rounded-md text-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-200 text-left w-full"

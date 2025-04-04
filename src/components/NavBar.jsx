@@ -2,11 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NavItem from "./NavItem";
 import { motion } from "framer-motion";
-
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-
 import logo from "../images/white_logo_fot.png";
+import {
+  logoVariants,
+  mobileMenuVariants,
+  navItemVariants,
+  scrollToSection,
+} from "../utils/animationVariants";
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,54 +32,9 @@ function NavBar() {
     };
   }, []);
 
-  const mobileMenuVariants = {
-    closed: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.3,
-        when: "afterChildren",
-        staggerChildren: 0.1,
-        staggerDirection: -1,
-      },
-    },
-    open: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        duration: 0.3,
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-        staggerDirection: 1,
-      },
-    },
-  };
-
-  const navItemVariants = {
-    closed: { opacity: 0, y: -10 },
-    open: { opacity: 1, y: 0 },
-  };
-
-  const logoVariants = {
-    initial: { opacity: 0, x: -20 },
-    animate: { opacity: 1, x: 0, transition: { duration: 0.5 } },
-    hover: { scale: 1.1, rotate: 5, transition: { duration: 0.3 } },
-  };
-
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      setIsOpen(false);
-
-      const yOffset = -70;
-      const y =
-        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-      window.scrollTo({
-        top: y,
-        behavior: "smooth",
-      });
-    }
+  const handleScrollToSection = (id) => {
+    scrollToSection(id);
+    if (isOpen) setIsOpen(false);
   };
 
   return (
@@ -120,7 +79,7 @@ function NavBar() {
                 transition={{ delay: 0.1 * index, duration: 0.5 }}
               >
                 <NavItem
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleScrollToSection(item.id)}
                   label={item.label}
                 />
               </motion.div>
@@ -170,7 +129,7 @@ function NavBar() {
           ].map((item, index) => (
             <motion.div key={index} variants={navItemVariants} className="py-1">
               <NavItem
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleScrollToSection(item.id)}
                 label={item.label}
                 isMobile={true}
                 setIsOpen={setIsOpen}

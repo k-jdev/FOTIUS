@@ -10,49 +10,16 @@ import {
   MapPin,
 } from "lucide-react";
 import logo from "../images/white_logo_fot.png";
+import chnu_logo from "../images/chnu_logo.png";
+import {
+  containerVariants,
+  itemVariants,
+  scrollToSection,
+} from "../utils/animationVariants";
 
 function Footer() {
   const footerRef = useRef(null);
   const isInView = useInView(footerRef, { once: true, amount: 0.2 });
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
-  // Функція для плавного скролінгу
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      // Знаходимо позицію елемента відносно верху сторінки
-      const yOffset = -70; // Компенсація висоти навбару
-      const y =
-        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-      // Плавно скролимо до елемента
-      window.scrollTo({
-        top: y,
-        behavior: "smooth",
-      });
-    }
-  };
 
   return (
     <footer ref={footerRef} className="bg-[#003D74] text-white">
@@ -101,7 +68,7 @@ function Footer() {
             <h3 className="text-lg font-bold mb-4 border-b border-blue-700 pb-2">
               Швидкі посилання
             </h3>
-            <ul className="space-y-2 ">
+            <ul className="space-y-2">
               {[
                 { id: "about", label: "Про факультет" },
                 { id: "advantages", label: "Наші переваги" },
@@ -182,6 +149,23 @@ function Footer() {
           variants={itemVariants}
           className="mt-12 pt-8 border-t border-blue-700 text-center"
         >
+          <motion.div
+            className="flex justify-center items-center mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={
+              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+            }
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <img
+              src={chnu_logo}
+              alt="Герб Черкаського національного університету"
+              className="h-24 md:h-32"
+            />
+          </motion.div>
+          <p className="text-gray-300 mb-2">
+            Черкаський національний університет імені Богдана Хмельницького
+          </p>
           <p className="text-gray-300">
             © {new Date().getFullYear()} Факультет обчислювальної техніки і
             інформатики. Всі права захищено.
